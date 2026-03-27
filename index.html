@@ -1,20 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Ignacio’s Adventures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #f2f2f2;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background: black;
+      border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      opacity: 0.8;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom, #000, #111);
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      opacity: 0.7;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: crimson;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .comic-preview img {
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #222;
+    }
+
+    .shop {
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 12px;
+      opacity: 0.5;
+    }
+  </style>
 </head>
-<body style="font-family:Arial; background:#111; color:white; text-align:center;">
 
-<h1>Ignacio’s Adventures</h1>
-<p>A journey through war and exile</p>
+<body>
 
-<a href="https://buy.stripe.com/YOUR_LINK" style="
-padding:10px 20px;
-background:crimson;
-color:white;
-text-decoration:none;">
-Buy Issue #1 (€5)
-</a>
+<header>
+  <h1>Ignacio’s Adventures</h1>
+  <nav>
+    <a href="#read">Read</a>
+    <a href="#shop">Shop</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>A Journey Through War and Exile</h2>
+  <p>A historical comic inspired by real events</p>
+  <a href="#read" class="btn">Read Preview</a>
+</section>
+
+<section id="read" class="section">
+  <h2>Preview</h2>
+  <div class="comic-preview">
+    <img src="images/panel1.jpg">
+    <img src="images/panel2.jpg">
+    <img src="images/panel3.jpg">
+  </div>
+</section>
+
+<section id="shop" class="section shop">
+  <h2>Support the Project</h2>
+  <p>Buy Issue #1 (Digital PDF)</p>
+
+  <a href="YOUR_STRIPE_LINK" class="btn">
+    Buy Now – €5
+  </a>
+</section>
+
+<footer>
+  © Ignacio’s Adventures
+</footer>
 
 </body>
 </html>
