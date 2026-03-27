@@ -1,130 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ignacio’s Adventures</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f2f2f2;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignacio’s Adventures</title>
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      background: black;
-      border-bottom: 1px solid #222;
-    }
+<style>@keyframes flash {
+  0%, 92%, 100% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.15;
+  }
+  94% {
+    opacity: 0;
+  }
+  96% {
+    opacity: 0.1;
+  }
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: 1px;
-    }
+.hero-flash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  pointer-events: none;
+  animation: flash 6s infinite;
+}
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #0b0b0b;
+  color: #eaeaea;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      opacity: 0.8;
-    }
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
 
-    nav a:hover {
-      opacity: 1;
-    }
+h1 {
+  font-size: 48px;
+  letter-spacing: 2px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(to bottom, #000, #111);
-    }
+h2 {
+  font-size: 28px;
+  font-weight: normal;
+  max-width: 700px;
+}
 
-    .hero h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+.image {
+  padding: 0;
+}
 
-    .hero p {
-      opacity: 0.7;
-    }
+.image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: crimson;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-    }
+.accent {
+  color: crimson;
+}
 
-    .section {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    .comic-preview img {
-      width: 100%;
-      margin-bottom: 15px;
-      border: 1px solid #222;
-    }
-
-    .shop {
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      font-size: 12px;
-      opacity: 0.5;
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Ignacio’s Adventures</h1>
-  <nav>
-    <a href="#read">Read</a>
-    <a href="#shop">Shop</a>
-  </nav>
-</header>
+<section style="position:relative; overflow:hidden;">
+  
+  <div class="hero-flash"></div>
 
-<section class="hero">
-  <h2>A Journey Through War and Exile</h2>
-  <p>A historical comic inspired by real events</p>
-  <a href="#read" class="btn">Read Preview</a>
-</section>
-
-<section id="read" class="section">
-  <h2>Preview</h2>
-  <div class="comic-preview">
-    <img src="images/panel1.jpg">
-    <img src="images/panel2.jpg">
-    <img src="images/panel3.jpg">
+  <div>
+    <h1>IGNACIO’S ADVENTURES</h1>
+    <h2>A Chronicle of War and Exile</h2>
   </div>
+
 </section>
 
-<section id="shop" class="section shop">
-  <h2>Support the Project</h2>
-  <p>Buy Issue #1 (Digital PDF)</p>
-
-  <a href="YOUR_STRIPE_LINK" class="btn">
-    Buy Now – €5
-  </a>
+<section>
+  <h2>Lithuania, 1831.<br>The uprising begins.</h2>
 </section>
 
-<footer>
-  © Ignacio’s Adventures
-</footer>
+<section class="image">
+  <img src="images/panel1.jpg">
+</section>
+
+<section>
+  <h2>The retreat from Kaunas…</h2>
+</section>
+
+<section class="image">
+  <img src="images/panel2.jpg">
+</section>
+
+<section>
+  <h2>Survival becomes the only objective.</h2>
+</section>
+
+<section class="image">
+  <img src="images/panel3.jpg">
+</section>
+
+<section>
+  <h2>
+    <span class="accent">Volume I — The Uprising</span><br><br>
+    Part of a trilogy
+  </h2>
+</section>
 
 </body>
 </html>
