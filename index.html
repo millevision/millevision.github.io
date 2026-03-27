@@ -3,46 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ignacio’s Adventures</title>
+<title>Ignacio Adventures</title>
 
-<style>.fade-img {
-  opacity: 0;
-  transform: scale(1.05);
-  transition: all 1.5s ease;
-}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Oswald:wght@500&display=swap" rel="stylesheet">
 
-.fade-img.visible {
-  opacity: 1;
-  transform: scale(1);
-}@keyframes flash {
-  0%, 92%, 100% {
-    opacity: 0;
-  }
-  93% {
-    opacity: 0.15;
-  }
-  94% {
-    opacity: 0;
-  }
-  96% {
-    opacity: 0.1;
-  }
-}
+<style>
 
-.hero-flash {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, rgba(0,0,0,0) 70%);
-  pointer-events: none;
-  animation: flash 6s infinite;
-}
+/* BASE */
+
 body {
   margin: 0;
-  font-family: Georgia, serif;
   background: #0b0b0b;
   color: #eaeaea;
+  font-family: 'Playfair Display', serif;
+  overflow-x: hidden;
 }
+
+/* TOP BAR */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 30px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-left {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: #eaeaea;
+  opacity: 0.8;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  letter-spacing: 6px;
+}
+
+.nav-right {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* SECTIONS */
 
 section {
   min-height: 100vh;
@@ -50,33 +62,25 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px;
+  padding: 120px 40px;
 }
 
-h1 {
-  font-size: 48px;
-  letter-spacing: 2px;
+/* HERO */
+
+.title {
+  font-size: 90px;
+  letter-spacing: 8px;
 }
 
-h2 {
-  font-size: 28px;
-  font-weight: normal;
-  max-width: 700px;
+.subtitle {
+  font-size: 16px;
+  letter-spacing: 8px;
+  opacity: 0.6;
 }
 
-.image {
-  padding: 0;
-}
+/* TEXT FADE */
 
-.image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.accent {
-  color: crimson;
-}.fade {
+.fade {
   opacity: 0;
   transform: translateY(30px);
   transition: all 1.2s ease;
@@ -87,37 +91,98 @@ h2 {
   transform: translateY(0);
 }
 
+/* IMAGE FADE */
+
+.fade-img {
+  opacity: 0;
+  transform: scale(1.05);
+  transition: all 1.5s ease;
+}
+
+.fade-img.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* FLASH (war effect) */
+
+@keyframes flash {
+  0%, 92%, 100% { opacity: 0; }
+  93% { opacity: 0.15; }
+  94% { opacity: 0; }
+  96% { opacity: 0.1; }
+}
+
+.hero-flash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+  animation: flash 6s infinite;
+}
+
+/* BUTTON */
+
+.btn {
+  display: inline-block;
+  margin: 20px;
+  padding: 12px 24px;
+  border: 1px solid #aaa;
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
 </style>
 </head>
 
-<body><div class="topbar">
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
   <a href="#shop" class="nav-left">SHOP</a>
-
   <div class="nav-center">IGNACIO</div>
-
   <div class="nav-right">☰</div>
 </div>
 
+<!-- HERO -->
 <section style="position:relative; overflow:hidden; flex-direction:column;">
-  
   <div class="hero-flash"></div>
 
-  <div class="hero-content fade">
+  <div class="fade">
     <h1 class="title">IGNACIO</h1>
     <h2 class="subtitle">ADVENTURES</h2>
 
-    <div class="hero-buttons">
+    <div>
       <a href="#shop" class="btn">SHOP</a>
-      <a href="#signup" class="btn ghost">SIGN UP</a>
+      <a href="#signup" class="btn">SIGN UP</a>
     </div>
   </div>
-
 </section>
 
+<!-- STORY -->
 <section>
   <h2 class="fade">Lithuania, 1831.<br>The uprising begins.</h2>
 </section>
 
+<!-- IMAGE -->
 <section class="image">
   <img src="images/panel1.jpg" class="fade-img">
 </section>
@@ -140,16 +205,30 @@ h2 {
 
 <section>
   <h2 class="fade">
-    <span class="accent">Volume I — The Uprising</span><br><br>
+    <span style="color:crimson;">Volume I — The Uprising</span><br><br>
     Part of a trilogy
   </h2>
 </section>
+
+<!-- SHOP -->
+<section id="shop">
+  <h2 class="fade">Shop coming soon</h2>
+</section>
+
+<!-- SIGNUP -->
+<section id="signup">
+  <h2 class="fade">Join the Chronicle</h2>
+</section>
+
+<footer>
+  © Ignacio Adventures — All Rights Reserved
+</footer>
+
+<!-- SCRIPT -->
 <script>
 const faders = document.querySelectorAll('.fade, .fade-img');
 
-const appearOptions = {
-  threshold: 0.2
-};
+const appearOptions = { threshold: 0.2 };
 
 const appearOnScroll = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
@@ -162,5 +241,6 @@ faders.forEach(fader => {
   appearOnScroll.observe(fader);
 });
 </script>
+
 </body>
 </html>
