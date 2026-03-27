@@ -11,9 +11,7 @@
 
 /* BASE */
 
-body body {
-  overflow-x: hidden;
-}{
+body {
   margin: 0;
   background: #0b0b0b;
   color: #eaeaea;
@@ -27,16 +25,15 @@ body body {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 30px 30px; /* 🔥 reduced from 60px */
+  padding: 25px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 2000;
-  box-sizing: border-box; /* 🔥 IMPORTANT */
+  box-sizing: border-box;
 }
 
 .nav-left {
-  justify-self: start;
   font-size: 12px;
   letter-spacing: 3px;
   text-decoration: none;
@@ -45,14 +42,16 @@ body body {
 }
 
 .nav-center {
-  justify-self: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Cinzel', serif;
   font-size: 24px;
   letter-spacing: 6px;
+  pointer-events: none;
 }
 
 .nav-right {
-  justify-self: end;
   font-size: 22px;
   cursor: pointer;
 }
@@ -65,7 +64,7 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 120px 40px;
+  padding: 140px 40px;
 }
 
 /* HERO */
@@ -181,7 +180,7 @@ footer {
 <div class="topbar">
   <a href="#shop" class="nav-left">SHOP</a>
   <div class="nav-center">IGNACIO</div>
-  <div class="nav-right">MENU</div>
+  <div class="nav-right">☰</div>
 </div>
 
 <!-- HERO -->
@@ -189,8 +188,8 @@ footer {
   <div class="hero-flash"></div>
 
   <div class="fade">
-    <h1 class="title">ADVENTURES</h1>
-    <h2 class="subtitle">A Life in Uprising & Exile</h2>
+    <h1 class="title">IGNACIO</h1>
+    <h2 class="subtitle">ADVENTURES</h2>
 
     <a href="#signup" class="main-btn">SIGN UP</a>
   </div>
