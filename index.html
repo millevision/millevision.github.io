@@ -49,8 +49,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: 20px;
-  letter-spacing: 5px;
+  font-size: clamp(18px, 3vw, 28px); /* 🔥 responsive */
+  letter-spacing: 6px;
+  font-weight: 600;
 }
 
 .nav-center a {
@@ -133,7 +134,7 @@ h1 {
 }
 
 h2 {
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   letter-spacing: 2px;
 }
 
@@ -296,6 +297,14 @@ faders.forEach(el => observer.observe(el));
 
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
+}@media (max-width: 600px) {
+  .topbar {
+    padding: 0 15px;
+  }
+
+  section {
+    padding: 80px 15px;
+  }
 }
 
 </script>
