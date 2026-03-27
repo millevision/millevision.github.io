@@ -33,7 +33,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: white;
+  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, rgba(0,0,0,0) 70%);
   pointer-events: none;
   animation: flash 6s infinite;
 }
@@ -108,31 +108,48 @@ h2 {
 </section>
 
 <section class="image">
-  <img src="images/panel1.jpg">
+  <img src="images/panel1.jpg" class="fade-img">
 </section>
 
 <section>
-  <h2>The retreat from Kaunas…</h2>
+  <h2 class="fade">The retreat from Kaunas…</h2>
 </section>
 
 <section class="image">
-  <img src="images/panel2.jpg">
+  <img src="images/panel2.jpg" class="fade-img">
 </section>
 
 <section>
-  <h2>Survival becomes the only objective.</h2>
+  <h2 class="fade">Survival becomes the only objective.</h2>
 </section>
 
 <section class="image">
-  <img src="images/panel3.jpg">
+  <img src="images/panel3.jpg" class="fade-img">
 </section>
 
 <section>
-  <h2>
+  <h2 class="fade">
     <span class="accent">Volume I — The Uprising</span><br><br>
     Part of a trilogy
   </h2>
 </section>
+<script>
+const faders = document.querySelectorAll('.fade, .fade-img');
 
+const appearOptions = {
+  threshold: 0.2
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
 </body>
 </html>
