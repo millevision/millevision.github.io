@@ -11,7 +11,9 @@
 
 /* BASE */
 
-body {
+body body {
+  overflow-x: hidden;
+}{
   margin: 0;
   background: #0b0b0b;
   color: #eaeaea;
@@ -25,11 +27,12 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 30px 60px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  padding: 30px 30px; /* 🔥 reduced from 60px */
+  display: flex;
   align-items: center;
-  z-index: 1000;
+  justify-content: space-between;
+  z-index: 2000;
+  box-sizing: border-box; /* 🔥 IMPORTANT */
 }
 
 .nav-left {
