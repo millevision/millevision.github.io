@@ -188,8 +188,17 @@ footer {
 .buy-btn:hover {
   background: white;
   color: black;
-}
+}/* MOBILE FIX */
 
+@media (max-width: 600px) {
+  .topbar {
+    padding: 0 15px;
+  }
+
+  section {
+    padding: 80px 15px;
+  }
+}
 </style>
 </head>
 
@@ -297,17 +306,7 @@ faders.forEach(el => observer.observe(el));
 
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
-}@media (max-width: 600px) {
-  .topbar {
-    padding: 0 15px;
-  }
-
-  section {
-    padding: 80px 15px;
-  }
 }
-
-</script>
 
 </body>
 </html>
