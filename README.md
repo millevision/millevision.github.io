@@ -1,2 +1,2 @@
 # millevision.github.io
-Historical comicnovell about lithuanian chilean insurgent and scientist
+Historical comic-novell about lithuanian-chilean insurgent and scientist
