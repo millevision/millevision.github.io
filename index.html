@@ -7,7 +7,23 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
-<style>
+<style>@keyframes flash {
+  0%, 95%, 100% { opacity: 0; }
+  96% { opacity: 0.15; }
+  97% { opacity: 0; }
+  98% { opacity: 0.1; }
+}
+
+.hero-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, transparent 70%);
+  animation: flash 6s infinite;
+}
   .gallery {
   display: grid;
   grid-template-columns: 1fr;
