@@ -67,6 +67,15 @@ h2 {
 
 .accent {
   color: crimson;
+}.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 </style>
@@ -86,7 +95,7 @@ h2 {
 </section>
 
 <section>
-  <h2>Lithuania, 1831.<br>The uprising begins.</h2>
+  <h2 class="fade">Lithuania, 1831.<br>The uprising begins.</h2>
 </section>
 
 <section class="image">
