@@ -49,9 +49,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: clamp(18px, 3vw, 28px); /* 🔥 responsive */
-  letter-spacing: 6px;
-  font-weight: 600;
+  font-size: 24px; /* safe fixed size */
+  letter-spacing: 5px;
+  z-index: 10001; /* 🔥 ensure visible */
 }
 
 .nav-center a {
