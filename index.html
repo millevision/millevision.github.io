@@ -16,7 +16,6 @@ body {
   background: #0b0b0b;
   color: #eaeaea;
   font-family: 'Playfair Display', serif;
-  overflow-x: hidden;
 }
 
 /* TOP BAR */
@@ -25,20 +24,18 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 25px 30px;
+  padding: 20px 30px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  z-index: 2000;
-  box-sizing: border-box;
+  align-items: center;
+  z-index: 1000;
 }
 
 .nav-left {
-  font-size: 12px;
+  font-size: 14px; /* bigger */
   letter-spacing: 3px;
+  color: white;
   text-decoration: none;
-  color: #eaeaea;
-  opacity: 0.8;
 }
 
 .nav-center {
@@ -46,14 +43,46 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: 24px;
-  letter-spacing: 6px;
-  pointer-events: none;
+  font-size: 22px;
+  letter-spacing: 5px;
+}
+
+.nav-center a {
+  color: white;
+  text-decoration: none;
 }
 
 .nav-right {
   font-size: 22px;
   cursor: pointer;
+}
+
+/* MENU OVERLAY */
+
+.menu-overlay {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b0b0b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: bottom 0.6s ease;
+  z-index: 2000;
+}
+
+.menu-overlay.active {
+  bottom: 0;
+}
+
+.menu-overlay a {
+  display: block;
+  font-size: 28px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
 }
 
 /* SECTIONS */
@@ -64,40 +93,32 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 140px 40px;
+  padding: 120px 20px;
 }
 
 /* HERO */
 
 .title {
   font-family: 'Cinzel', serif;
-  font-size: 90px;
-  letter-spacing: 8px;
+  font-size: 70px;
+  letter-spacing: 6px;
 }
 
 .subtitle {
-  font-size: 16px;
-  letter-spacing: 8px;
-  opacity: 0.6;
+  font-size: 18px;
+  letter-spacing: 6px;
+  opacity: 0.7;
 }
 
 /* BUTTON */
 
 .main-btn {
-  margin-top: 40px;
-  padding: 14px 32px;
-  border: 1px solid #aaa;
-  font-size: 13px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: 1px solid white;
   text-decoration: none;
   color: white;
-  transition: all 0.3s ease;
-
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeBtn 1s ease forwards;
-  animation-delay: 1s;
+  letter-spacing: 3px;
 }
 
 .main-btn:hover {
@@ -105,19 +126,12 @@ section {
   color: black;
 }
 
-@keyframes fadeBtn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* TEXT FADE */
+/* ANIMATION */
 
 .fade {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1.2s ease;
+  transition: all 1s ease;
 }
 
 .fade.visible {
@@ -125,50 +139,11 @@ section {
   transform: translateY(0);
 }
 
-/* IMAGE FADE */
+/* IMAGE */
 
-.fade-img {
-  opacity: 0;
-  transform: scale(1.05);
-  transition: all 1.5s ease;
-}
-
-.fade-img.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.image img {
+img {
   width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* FLASH */
-
-@keyframes flash {
-  0%, 92%, 100% { opacity: 0; }
-  93% { opacity: 0.15; }
-  94% { opacity: 0; }
-  96% { opacity: 0.1; }
-}
-
-.hero-flash {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, rgba(0,0,0,0) 70%);
-  pointer-events: none;
-  animation: flash 6s infinite;
-}
-
-/* FOOTER */
-
-footer {
-  text-align: center;
-  padding: 40px;
-  font-size: 12px;
-  opacity: 0.5;
+  max-width: 800px;
 }
 
 </style>
@@ -179,61 +154,60 @@ footer {
 <!-- TOP BAR -->
 <div class="topbar">
   <a href="#shop" class="nav-left">SHOP</a>
-  <div class="nav-center">IGNACIO</div>
-  <div class="nav-right">☰</div>
+
+  <div class="nav-center">
+    <a href="#">IGNACIO</a>
+  </div>
+
+  <div class="nav-right" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- MENU -->
+<div class="menu-overlay" id="menu">
+  <div>
+    <a href="#">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#signup">Sign Up</a>
+  </div>
 </div>
 
 <!-- HERO -->
-<section style="position:relative; overflow:hidden; flex-direction:column;">
-  <div class="hero-flash"></div>
-
+<section>
   <div class="fade">
     <h1 class="title">IGNACIO</h1>
     <h2 class="subtitle">ADVENTURES</h2>
-
     <a href="#signup" class="main-btn">SIGN UP</a>
   </div>
 </section>
 
-<!-- STORY -->
 <section>
-  <h2 class="fade">Lithuania, 1831.<br>The uprising begins.</h2>
-</section>
-
-<!-- IMAGE -->
-<section class="image">
-  <img src="images/panel1.jpg" class="fade-img">
+  <h2 class="fade">Lithuania, 1831</h2>
 </section>
 
 <section>
-  <h2 class="fade">The retreat from Kaunas…</h2>
-</section>
-
-<section class="image">
-  <img src="images/panel2.jpg" class="fade-img">
+  <img src="images/panel1.jpg">
 </section>
 
 <section>
-  <h2 class="fade">Survival becomes the only objective.</h2>
-</section>
-
-<section class="image">
-  <img src="images/panel3.jpg" class="fade-img">
+  <h2 class="fade">The retreat from Kaunas</h2>
 </section>
 
 <section>
-  <h2 class="fade">
-    <span style="color:crimson;">Volume I — The Uprising</span><br><br>
-    Part of a trilogy
-  </h2>
+  <img src="images/panel2.jpg">
 </section>
 
-<!-- SHOP -->
+<section>
+  <h2 class="fade">Survival becomes the only objective</h2>
+</section>
+
+<section>
+  <img src="images/panel3.jpg">
+</section>
+
 <section id="shop">
   <h2 class="fade">Shop coming soon</h2>
 </section>
 
-<!-- SIGNUP -->
 <section id="signup">
   <h2 class="fade">Join the Chronicle</h2>
 </section>
@@ -242,22 +216,28 @@ footer {
   © Ignacio Adventures — All Rights Reserved
 </footer>
 
-<!-- SCRIPT -->
 <script>
-const faders = document.querySelectorAll('.fade, .fade-img');
 
-const appearOptions = { threshold: 0.2 };
+/* FADE */
 
-const appearOnScroll = new IntersectionObserver(function(entries) {
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
   });
-}, appearOptions);
-
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
 });
+
+faders.forEach(el => observer.observe(el));
+
+/* MENU */
+
+function toggleMenu() {
+  document.getElementById('menu').classList.toggle('active');
+}
+
 </script>
 
 </body>
