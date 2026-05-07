@@ -3,31 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ignacio Adventures</title>
 
 <link rel="icon" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
 <style>
-  /* KILL ALL LINK COLORS */
-a, a:visited, a:active {
-  color: white !important;
-  text-decoration: none !important;
-}
 
-/* CLEAN SHOP LOOK */
-.nav-left {
-  color: white !important;
-  opacity: 0.85;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-.nav-left:hover {
-  opacity: 1;
-}
-
+/* RESET */
 body {
   margin: 0;
   background: #000;
@@ -35,6 +18,216 @@ body {
   font-family: Georgia, serif;
   overflow-x: hidden;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* HEADER (always visible) */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.2);
+  z-index: 2000;
+}
+
+.nav-left {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  letter-spacing: 6px;
+}
+
+.nav-right {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MENU */
+.menu {
+  position: fixed;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.menu.active {
+  bottom: 0;
+}
+
+.menu a {
+  display: block;
+  font-size: 28px;
+  margin: 20px;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('images/hero.jpg') center 25% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+}
+
+/* FLASH */
+@keyframes flash {
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 0.4; }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,200,150,0.4), transparent 60%);
+  animation: flash 5s infinite;
+}
+
+/* CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(42px, 8vw, 80px);
+}
+
+h2 {
+  font-size: clamp(18px, 4vw, 26px);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: 1px solid white;
+}
+
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="topbar">
+  <a href="#shop" class="nav-left">SHOP</a>
+  <div class="nav-center">IGNACIO</div>
+  <div class="nav-right" id="menuBtn">☰</div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <div>
+    <a href="#">Home</a>
+    <a href="#read">Read</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="flash"></div>
+
+  <div class="hero-content">
+    <h2>LEGITCOMICS PRESENTS</h2>
+    <h1>IGNACIO</h1>
+    <h2>WHERE HEROES BECOME LEGENDS</h2>
+
+    <a href="#read" class="btn">READ</a>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="read">
+  <h2 class="fade">Lithuania, 1831</h2>
+</section>
+
+<section>
+  <h2 class="fade">The retreat from Kaunas</h2>
+</section>
+
+<section id="shop">
+  <h2 class="fade">Volume I</h2>
+</section>
+
+<script>
+
+/* MENU */
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+
+menuBtn.onclick = () => {
+  const open = menu.classList.toggle("active");
+  menuBtn.textContent = open ? "✕" : "☰";
+};
+
+/* FADE */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add("visible");
+  });
+});
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>}
 
 a {
   color: white;
