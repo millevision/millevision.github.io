@@ -47,13 +47,11 @@ a {
   top: 0;
   width: 100%;
   height: 70px;
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.25);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 1000;
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.2);
+  opacity: 1;            /* always visible */
+  z-index: 2000;
 }
-
 .topbar.visible {
   opacity: 1;
 }
