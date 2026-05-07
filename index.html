@@ -14,27 +14,242 @@
 body {
   margin: 0;
   background: #000;
-  color: #fff;
+  color: white;
   font-family: Georgia, serif;
   overflow-x: hidden;
 }
 
-/* HEADER (hidden first) */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* HEADER */
 .topbar {
   position: fixed;
   top: 0;
   width: 100%;
   height: 70px;
   backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.25);
   opacity: 0;
-  transition: 0.4s;
-  z-index: 2000;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
 }
 
 .topbar.visible {
   opacity: 1;
 }
+
+.nav-left {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.nav-left:hover {
+  opacity: 1;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  letter-spacing: 6px;
+}
+
+.nav-right {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* MENU */
+.menu {
+  position: fixed;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: bottom 0.4s ease;
+  z-index: 999;
+}
+
+.menu.active {
+  bottom: 0;
+}
+
+.menu a {
+  display: block;
+  font-size: 28px;
+  margin: 20px;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('images/hero.jpg') center 25% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.35));
+}
+
+/* FLASH */
+@keyframes flash {
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 0.5; }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,200,150,0.5), transparent 55%);
+  animation: flash 5s infinite;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(42px, 8vw, 80px);
+}
+
+h2 {
+  font-size: clamp(18px, 4vw, 26px);
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: 1px solid white;
+}
+
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="topbar" id="header">
+  <a href="#shop" class="nav-left">SHOP</a>
+  <div class="nav-center">IGNACIO</div>
+  <div class="nav-right" id="menuBtn">☰</div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <div>
+    <a href="#">Home</a>
+    <a href="#read">Read</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="flash"></div>
+
+  <div class="hero-content">
+    <h2>LEGITCOMICS PRESENTS</h2>
+    <h1>IGNACIO</h1>
+    <h2>WHERE HEROES BECOME LEGENDS</h2>
+
+    <a href="#read" class="btn">READ</a>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="read">
+  <h2 class="fade">Lithuania, 1831</h2>
+</section>
+
+<section>
+  <h2 class="fade">The retreat from Kaunas</h2>
+</section>
+
+<section id="shop">
+  <h2 class="fade">Volume I</h2>
+</section>
+
+<script>
+
+/* HEADER SHOW */
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("header");
+  header.classList.toggle("visible", window.scrollY > 100);
+});
+
+/* MENU TOGGLE (RELIABLE) */
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+
+menuBtn.addEventListener("click", () => {
+  const isOpen = menu.classList.toggle("active");
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+});
+
+/* FADE */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+});
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>}
 
 .nav-left {
   position: absolute;
