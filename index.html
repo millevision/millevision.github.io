@@ -3,151 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGNACIO ADVENTURES</title>
+
+<title>Ignacio Adventures</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
-<style>@keyframes flash {
-  0%, 95%, 100% { opacity: 0; }
-  96% { opacity: 0.25; }
-  97% { opacity: 0; }
-  98% { opacity: 0.1; }
-}
+<style>
 
-.hero-flash {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, transparent 70%);
-  animation: flash 6s infinite;
-}
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 25px;
-  margin-top: 40px;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-/* subtle zoom on hover (desktop only feel) */
-.gallery img:hover {
-  transform: scale(1.03);
-}
-
-/* desktop layout */
-@media (min-width: 800px) {
-  .gallery {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* BASE */
+/* RESET */
 
 body {
   margin: 0;
   background: #0b0b0b;
   color: #eaeaea;
   font-family: Georgia, serif;
+  overflow-x: hidden;
 }
 
-/* TOP BAR */
+/* NAV */
 
 .topbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  z-index: 9999;
-  box-sizing: border-box;
+  z-index: 1000;
 }
 
 .nav-left {
+  position: absolute;
+  left: 20px;
   font-size: 14px;
   letter-spacing: 2px;
-  text-decoration: none;
-  color: white;
 }
-
-/* LOGO */
 
 .nav-center {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: clamp(28px, 7vw, 54px); /* 🔥 responsive */
-  letter-spacing: 6px;
-  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 4px;
 }
-
-.nav-center a {
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-.nav-center a:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
-}
-
-/* MENU BUTTON */
 
 .nav-right {
   position: absolute;
   right: 20px;
-  font-size: 26px;
+  font-size: 24px;
   cursor: pointer;
 }
 
-/* MENU OVERLAY */
+.topbar a {
+  color: white;
+  text-decoration: none;
+}
 
-.menu-overlay {
+/* MENU */
+
+.menu {
   position: fixed;
   bottom: -100%;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: #0b0b0b;
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: bottom 0.5s ease;
-  z-index: 9998;
+  transition: 0.5s;
 }
 
-.menu-overlay.active {
+.menu.active {
   bottom: 0;
 }
 
-.menu-overlay a {
+.menu a {
   display: block;
-  font-size: 26px;
-  margin: 25px;
-  text-decoration: none;
-  letter-spacing: 2px;
+  font-size: 28px;
+  margin: 20px;
 }
 
-.menu-overlay a:nth-child(1) { color: #eaeaea; }
-.menu-overlay a:nth-child(2) { color: #c0392b; }
-.menu-overlay a:nth-child(3) { color: #bfa76f; }
+/* HERO */
 
-.menu-overlay a:hover {
-  opacity: 0.7;
+.hero {
+  height: 100vh;
+  background: url('images/hero.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(40px, 8vw, 70px);
+}
+
+h2 {
+  font-size: clamp(18px, 4vw, 26px);
 }
 
 /* SECTIONS */
@@ -155,95 +109,70 @@ body {
 section {
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 120px 20px;
 }
 
-/* HERO */
-  <div style="max-width:1000px; margin:auto;">
-
-    <h2 class="fade">Artwork</h2>
-
-    <div class="gallery">
-
-      <img src="images/art1.jpg">
-      <img src="images/art2.jpg">
-      <img src="images/art3.jpg">
-
-    </div>
-
-  </div>
-</section>
-h1 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(36px, 8vw, 60px);
-  letter-spacing: 6px;
-}
-
-h2 {
-  font-size: clamp(14px, 4vw, 18px);
-  letter-spacing: 2px;
-}
-
-/* BUTTONS */
-
-.main-btn, .buy-btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 26px;
-  border: 1px solid white;
-  text-decoration: none;
-  color: white;
-  letter-spacing: 3px;
-  transition: 0.3s;
-}
-
-.main-btn:hover, .buy-btn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.05);
-}
-
-/* SAFE FADE (never hides content completely) */
+/* FADE */
 
 .fade {
-  opacity: 1;
-  transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(40px);
   transition: 1s;
 }
 
 .fade.visible {
+  opacity: 1;
   transform: translateY(0);
 }
 
-/* IMAGE */
+/* BUTTON */
 
-img {
+.btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: 1px solid white;
+  display: inline-block;
+}
+
+/* SLIDER */
+
+.slider {
   width: 100%;
-  max-width: 700px;
+  overflow: hidden;
 }
 
-/* FOOTER */
-
-footer {
-  text-align: center;
-  padding: 40px;
-  font-size: 12px;
-  opacity: 0.5;
+.slider-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
 }
 
-/* MOBILE */
+.slide {
+  min-width: 300px;
+  margin: 0 20px;
+}
 
-@media (max-width: 600px) {
-  .topbar {
-    padding: 0 15px;
-  }
+.slide img {
+  width: 100%;
+}
 
-  section {
-    padding: 80px 15px;
-  }
+/* slider animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* CURSOR */
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
 </style>
@@ -251,105 +180,77 @@ footer {
 
 <body>
 
-<!-- TOP BAR -->
+<div class="cursor"></div>
+
+<!-- NAV -->
 <div class="topbar">
-  <a href="#shop" class="nav-left">SHOP</a>
-
-  <div class="nav-center">
-    <a href="#">IGNACIO</a>
-  </div>
-
+  <a href="#" class="nav-left">HOME</a>
+  <a href="#shop" class="nav-center">BUY</a>
   <div class="nav-right" onclick="toggleMenu()">☰</div>
 </div>
 
 <!-- MENU -->
-<div class="menu-overlay" id="menu">
+<div class="menu" id="menu">
   <div>
     <a href="#">Home</a>
     <a href="#shop">Shop</a>
-    <a href="#signup">Sign Up</a>
   </div>
 </div>
 
 <!-- HERO -->
-<section style="height:100vh; background:url('images/hero.jpg') center 20% / cover no-repeat; position:relative;">
-
-  <div style="
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    background:rgba(0,0,0,0.5);
-    padding:20px;
-  ">
+<div class="hero">
+  <div>
     <h1>ADVENTURES</h1>
     <h2>UPRISING & EXILE</h2>
-    <a href="#signup" class="main-btn">SIGN UP</a>
   </div>
-
-</section>
+</div>
 
 <!-- STORY -->
-<section>
-  <h2 class="fade">Lithuania, 1831</h2>
-</section>
+<section><h2 class="fade">Lithuania, 1831</h2></section>
+<section><h2 class="fade">The retreat from Kaunas</h2></section>
+<section><h2 class="fade">Survival becomes the only objective</h2></section>
 
+<!-- HEROES SLIDER -->
 <section>
-  <img src="images/panel1.jpg">
-</section>
+  <div>
+    <h2>Our Heroes</h2>
 
-<section>
-  <h2 class="fade">The retreat from Kaunas</h2>
-</section>
+    <div class="slider">
+      <div class="slider-track">
+        <div class="slide"><img src="images/hero1.jpg"></div>
+        <div class="slide"><img src="images/hero2.jpg"></div>
+        <div class="slide"><img src="images/hero3.jpg"></div>
 
-<section>
-  <img src="images/panel2.jpg">
-</section>
+        <!-- duplicate for loop -->
+        <div class="slide"><img src="images/hero1.jpg"></div>
+        <div class="slide"><img src="images/hero2.jpg"></div>
+        <div class="slide"><img src="images/hero3.jpg"></div>
+      </div>
+    </div>
 
-<section>
-  <h2 class="fade">Survival becomes the only objective</h2>
-</section>
-
-<section>
-  <img src="images/panel3.jpg">
+  </div>
 </section>
 
 <!-- SHOP -->
 <section id="shop">
-  <div style="max-width:900px;">
+  <div>
+    <h2>Volume I</h2>
+    <p>1831 uprising</p>
 
-    <h2 class="fade">Volume I — The Uprising</h2>
-
-    <img src="images/cover.jpg" style="width:100%; max-width:400px; margin:20px auto; display:block;">
-
-    <p style="max-width:500px; margin:20px auto;">
-      A historical comic following Ignacio through the Lithuanian uprising of 1831.
-    </p>
-
-    <a href="https://buy.stripe.com/9B63cu21jdfmbJD2pCfrW03"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="buy-btn">
-       BUY NOW
+    <a href="https://buy.stripe.com/9B63cu21jdfmbJD2pCfrW03" target="_blank" class="btn">
+      BUY — €12
     </a>
-
   </div>
 </section>
 
-<!-- SIGNUP -->
-<section id="signup">
-  <h2 class="fade">Join the Chronicle</h2>
-</section>
-
-<footer>
-  © Ignacio Adventures — All Rights Reserved
-</footer>
-
 <script>
 
-/* FADE ANIMATION */
+/* MENU */
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
 
+/* FADE */
 const faders = document.querySelectorAll('.fade');
 
 const observer = new IntersectionObserver(entries => {
@@ -362,11 +263,13 @@ const observer = new IntersectionObserver(entries => {
 
 faders.forEach(el => observer.observe(el));
 
-/* MENU */
+/* CURSOR FOLLOW */
+const cursor = document.querySelector('.cursor');
 
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
+document.addEventListener('mousemove', e => {
+  cursor.style.top = e.clientY + "px";
+  cursor.style.left = e.clientX + "px";
+});
 
 </script>
 
