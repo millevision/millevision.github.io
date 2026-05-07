@@ -253,4 +253,223 @@ faders.forEach(el => observer.observe(el));
 </script>
 
 </body>
+</html>}
+
+.nav-left {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  letter-spacing: 6px;
+}
+
+.nav-right {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MENU */
+.menu {
+  position: fixed;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  z-index: 2500;
+}
+
+.menu.active {
+  bottom: 0;
+}
+
+.menu a {
+  display: block;
+  font-size: 28px;
+  margin: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('images/hero.jpg') center 25% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* LIGHTER overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+}
+
+/* FLASH (visible now) */
+@keyframes flash {
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 0.4; }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,200,150,0.4), transparent 60%);
+  animation: flash 5s infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(42px, 8vw, 80px);
+}
+
+h2 {
+  font-size: clamp(18px, 4vw, 26px);
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+}
+
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="topbar" id="header">
+  <a href="#shop" class="nav-left">SHOP</a>
+  <div class="nav-center">IGNACIO</div>
+  <div class="nav-right" onclick="toggleMenu()" id="menuBtn">☰</div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <div>
+    <a href="#">Home</a>
+    <a href="#read">Read</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="flash"></div>
+
+  <div class="hero-content">
+    <h2>LEGITCOMICS PRESENTS</h2>
+    <h1>IGNACIO</h1>
+    <h2>WHERE HEROES BECOME LEGENDS</h2>
+
+    <a href="#read" class="btn">READ</a>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="read">
+  <h2 class="fade">Lithuania, 1831</h2>
+</section>
+
+<section>
+  <h2 class="fade">The retreat from Kaunas</h2>
+</section>
+
+<section id="shop">
+  <h2 class="fade">Volume I</h2>
+</section>
+
+<script>
+
+/* HEADER SHOW ON SCROLL */
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("header");
+  if (window.scrollY > 100) {
+    header.classList.add("visible");
+  } else {
+    header.classList.remove("visible");
+  }
+});
+
+/* MENU toggle + X */
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  const btn = document.getElementById("menuBtn");
+
+  menu.classList.toggle("active");
+
+  if (menu.classList.contains("active")) {
+    btn.innerHTML = "✕";
+  } else {
+    btn.innerHTML = "☰";
+  }
+}
+
+/* FADE */
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+faders.forEach(el => observer.observe(el));
+
+</script>
+
+</body>
 </html>
