@@ -7,7 +7,10 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
-<style>@keyframes flash {
+<style>
+
+/* FLASH */
+@keyframes flash {
   0%, 95%, 100% { opacity: 0; }
   96% { opacity: 0.25; }
   97% { opacity: 0; }
@@ -16,42 +19,31 @@
 
 .hero-flash {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, transparent 70%);
   animation: flash 6s infinite;
 }
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 25px;
-  margin-top: 40px;
+
+/* TEXT ANIMATION */
+.hero h1, .hero h2, .main-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFade 1.5s ease forwards;
 }
 
-.gallery img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
+.hero h1 { animation-delay: 0.3s; }
+.hero h2 { animation-delay: 0.6s; }
+.main-btn { animation-delay: 0.9s; }
 
-/* subtle zoom on hover (desktop only feel) */
-.gallery img:hover {
-  transform: scale(1.03);
-}
-
-/* desktop layout */
-@media (min-width: 800px) {
-  .gallery {
-    grid-template-columns: 1fr 1fr;
+@keyframes heroFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* BASE */
-
 body {
   margin: 0;
   background: #0b0b0b;
@@ -60,7 +52,6 @@ body {
 }
 
 /* TOP BAR */
-
 .topbar {
   position: fixed;
   top: 0;
@@ -77,35 +68,23 @@ body {
 .nav-left {
   font-size: 14px;
   letter-spacing: 2px;
-  text-decoration: none;
   color: white;
+  text-decoration: none;
 }
-
-/* LOGO */
 
 .nav-center {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: clamp(28px, 7vw, 54px); /* 🔥 responsive */
+  font-size: clamp(28px, 7vw, 54px);
   letter-spacing: 6px;
-  font-weight: 600;
 }
 
 .nav-center a {
   color: white;
   text-decoration: none;
-  display: inline-block;
-  transition: 0.3s;
 }
-
-.nav-center a:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
-}
-
-/* MENU BUTTON */
 
 .nav-right {
   position: absolute;
@@ -114,8 +93,7 @@ body {
   cursor: pointer;
 }
 
-/* MENU OVERLAY */
-
+/* MENU */
 .menu-overlay {
   position: fixed;
   bottom: -100%;
@@ -138,20 +116,11 @@ body {
   display: block;
   font-size: 26px;
   margin: 25px;
+  color: white;
   text-decoration: none;
-  letter-spacing: 2px;
-}
-
-.menu-overlay a:nth-child(1) { color: #eaeaea; }
-.menu-overlay a:nth-child(2) { color: #c0392b; }
-.menu-overlay a:nth-child(3) { color: #bfa76f; }
-
-.menu-overlay a:hover {
-  opacity: 0.7;
 }
 
 /* SECTIONS */
-
 section {
   min-height: 100vh;
   display: flex;
@@ -161,21 +130,6 @@ section {
   padding: 120px 20px;
 }
 
-/* HERO */
-  <div style="max-width:1000px; margin:auto;">
-
-    <h2 class="fade">Artwork</h2>
-
-    <div class="gallery">
-
-      <img src="images/art1.jpg">
-      <img src="images/art2.jpg">
-      <img src="images/art3.jpg">
-
-    </div>
-
-  </div>
-</section>
 h1 {
   font-family: 'Cinzel', serif;
   font-size: clamp(36px, 8vw, 60px);
@@ -187,27 +141,17 @@ h2 {
   letter-spacing: 2px;
 }
 
-/* BUTTONS */
-
+/* BUTTON */
 .main-btn, .buy-btn {
   display: inline-block;
   margin-top: 20px;
   padding: 12px 26px;
   border: 1px solid white;
-  text-decoration: none;
   color: white;
-  letter-spacing: 3px;
-  transition: 0.3s;
+  text-decoration: none;
 }
 
-.main-btn:hover, .buy-btn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.05);
-}
-
-/* SAFE FADE (never hides content completely) */
-
+/* FADE */
 .fade {
   opacity: 1;
   transform: translateY(20px);
@@ -218,32 +162,16 @@ h2 {
   transform: translateY(0);
 }
 
-/* IMAGE */
-
 img {
   width: 100%;
   max-width: 700px;
 }
-
-/* FOOTER */
 
 footer {
   text-align: center;
   padding: 40px;
   font-size: 12px;
   opacity: 0.5;
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-  .topbar {
-    padding: 0 15px;
-  }
-
-  section {
-    padding: 80px 15px;
-  }
 }
 
 </style>
@@ -272,7 +200,9 @@ footer {
 </div>
 
 <!-- HERO -->
-<section style="height:100vh; background:url('images/hero.jpg') center 20% / cover no-repeat; position:relative;">
+<section class="hero" style="height:100vh; background:url('images/hero.jpg') center 20% / cover no-repeat; position:relative;">
+
+  <div class="hero-flash"></div>
 
   <div style="
     position:absolute;
@@ -327,11 +257,8 @@ footer {
       A historical comic following Ignacio through the Lithuanian uprising of 1831.
     </p>
 
-    <a href="https://buy.stripe.com/9B63cu21jdfmbJD2pCfrW03"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="buy-btn">
-       BUY NOW
+    <a href="https://buy.stripe.com/9B63cu21jdfmbJD2pCfrW03" target="_blank" class="buy-btn">
+      BUY NOW
     </a>
 
   </div>
@@ -348,8 +275,7 @@ footer {
 
 <script>
 
-/* FADE ANIMATION */
-
+/* FADE */
 const faders = document.querySelectorAll('.fade');
 
 const observer = new IntersectionObserver(entries => {
@@ -363,7 +289,6 @@ const observer = new IntersectionObserver(entries => {
 faders.forEach(el => observer.observe(el));
 
 /* MENU */
-
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("active");
 }
