@@ -3,154 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ignacio Adventures</title>
+<title>IGNACIO ADVENTURES</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
-<style>
+<style>@keyframes flash {
+  0%, 95%, 100% { opacity: 0; }
+  96% { opacity: 0.25; }
+  97% { opacity: 0; }
+  98% { opacity: 0.1; }
+}
+
+.hero-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,200,150,0.25) 0%, transparent 70%);
+  animation: flash 6s infinite;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* subtle zoom on hover (desktop only feel) */
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* desktop layout */
+@media (min-width: 800px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* BASE */
+
 body {
   margin: 0;
-  background: #000;
-  color: white;
+  background: #0b0b0b;
+  color: #eaeaea;
   font-family: Georgia, serif;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-}
+/* TOP BAR */
 
-/* HEADER */
 .topbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 70px;
-  backdrop-filter: blur(8px);
-  background: rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: 0.4s;
-}
-
-.topbar.visible {
-  opacity: 1;
-  transform: translateY(0);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 9999;
+  box-sizing: border-box;
 }
 
 .nav-left {
-  position: absolute;
-  left: 20px;
-  top: 24px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: white;
 }
+
+/* LOGO */
 
 .nav-center {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 18px;
   font-family: 'Cinzel', serif;
-  font-size: 28px;
+  font-size: clamp(28px, 7vw, 54px); /* 🔥 responsive */
+  letter-spacing: 6px;
+  font-weight: 600;
 }
+
+.nav-center a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.nav-center a:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* MENU BUTTON */
 
 .nav-right {
   position: absolute;
   right: 20px;
-  top: 18px;
   font-size: 26px;
   cursor: pointer;
 }
 
-/* MENU */
-.menu {
+/* MENU OVERLAY */
+
+.menu-overlay {
   position: fixed;
   bottom: -100%;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: black;
+  background: #0b0b0b;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.4s;
+  transition: bottom 0.5s ease;
+  z-index: 9998;
 }
 
-.menu.active {
+.menu-overlay.active {
   bottom: 0;
 }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  background: url('images/hero.jpg') center/cover no-repeat;
+.menu-overlay a {
+  display: block;
+  font-size: 26px;
+  margin: 25px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.menu-overlay a:nth-child(1) { color: #eaeaea; }
+.menu-overlay a:nth-child(2) { color: #c0392b; }
+.menu-overlay a:nth-child(3) { color: #bfa76f; }
+
+.menu-overlay a:hover {
+  opacity: 0.7;
+}
+
+/* SECTIONS */
+
+section {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.hero-content {
+  justify-content: center;
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fade 1.5s forwards;
+  padding: 120px 20px;
 }
 
-@keyframes fade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* HERO */
+  <div style="max-width:1000px; margin:auto;">
+
+    <h2 class="fade">Artwork</h2>
+
+    <div class="gallery">
+
+      <img src="images/art1.jpg">
+      <img src="images/art2.jpg">
+      <img src="images/art3.jpg">
+
+    </div>
+
+  </div>
+</section>
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(36px, 8vw, 60px);
+  letter-spacing: 6px;
+}
+
+h2 {
+  font-size: clamp(14px, 4vw, 18px);
+  letter-spacing: 2px;
+}
+
+/* BUTTONS */
+
+.main-btn, .buy-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 26px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 3px;
+  transition: 0.3s;
+}
+
+.main-btn:hover, .buy-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* SAFE FADE (never hides content completely) */
+
+.fade {
+  opacity: 1;
+  transform: translateY(20px);
+  transition: 1s;
+}
+
+.fade.visible {
+  transform: translateY(0);
+}
+
+/* IMAGE */
+
+img {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 0 15px;
+  }
+
+  section {
+    padding: 80px 15px;
   }
 }
 
-.btn {
-  border: 1px solid white;
-  padding: 10px 20px;
-  display: inline-block;
-  margin-top: 20px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="topbar" id="header">
+<!-- TOP BAR -->
+<div class="topbar">
   <a href="#shop" class="nav-left">SHOP</a>
-  <div class="nav-center">IGNACIO</div>
-  <div class="nav-right" id="menuBtn">☰</div>
+
+  <div class="nav-center">
+    <a href="#">IGNACIO</a>
+  </div>
+
+  <div class="nav-right" onclick="toggleMenu()">☰</div>
 </div>
 
 <!-- MENU -->
-<div class="menu" id="menu">
+<div class="menu-overlay" id="menu">
   <div>
     <a href="#">Home</a>
-    <a href="#read">Read</a>
+    <a href="#shop">Shop</a>
+    <a href="#signup">Sign Up</a>
   </div>
 </div>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>IGNACIO</h1>
-    <a href="#read" class="btn">READ</a>
+<section style="height:100vh; background:url('images/hero.jpg') center 20% / cover no-repeat; position:relative;">
+
+  <div style="
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    background:rgba(0,0,0,0.5);
+    padding:20px;
+  ">
+    <h1>ADVENTURES</h1>
+    <h2>UPRISING & EXILE</h2>
+    <a href="#signup" class="main-btn">SIGN UP</a>
   </div>
-</div>
+
+</section>
+
+<!-- STORY -->
+<section>
+  <h2 class="fade">Lithuania, 1831</h2>
+</section>
+
+<section>
+  <img src="images/panel1.jpg">
+</section>
+
+<section>
+  <h2 class="fade">The retreat from Kaunas</h2>
+</section>
+
+<section>
+  <img src="images/panel2.jpg">
+</section>
+
+<section>
+  <h2 class="fade">Survival becomes the only objective</h2>
+</section>
+
+<section>
+  <img src="images/panel3.jpg">
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div style="max-width:900px;">
+
+    <h2 class="fade">Volume I — The Uprising</h2>
+
+    <img src="images/cover.jpg" style="width:100%; max-width:400px; margin:20px auto; display:block;">
+
+    <p style="max-width:500px; margin:20px auto;">
+      A historical comic following Ignacio through the Lithuanian uprising of 1831.
+    </p>
+
+    <a href="https://buy.stripe.com/9B63cu21jdfmbJD2pCfrW03"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="buy-btn">
+       BUY NOW
+    </a>
+
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section id="signup">
+  <h2 class="fade">Join the Chronicle</h2>
+</section>
+
+<footer>
+  © Ignacio Adventures — All Rights Reserved
+</footer>
 
 <script>
 
-/* HEADER */
-window.addEventListener("scroll", () => {
-  document.getElementById("header")
-    .classList.toggle("visible", window.scrollY > 50);
+/* FADE ANIMATION */
+
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
 });
 
-/* MENU */
-const btn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
+faders.forEach(el => observer.observe(el));
 
-btn.onclick = () => {
-  const open = menu.classList.toggle("active");
-  btn.textContent = open ? "✕" : "☰";
-};
+/* MENU */
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
 
 </script>
 
