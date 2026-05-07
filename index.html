@@ -11,24 +11,37 @@
 
 <style>
 
-/* BASE */
 body {
   margin: 0;
   background: #000;
-  color: #eaeaea;
+  color: #fff;
   font-family: Georgia, serif;
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* HEADER (hidden first) */
 .topbar {
   position: fixed;
   top: 0;
   width: 100%;
   height: 70px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   background: rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: 0.4s;
   z-index: 2000;
+}
+
+.topbar.visible {
+  opacity: 1;
+}
+
+.nav-left {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .nav-center {
@@ -39,7 +52,6 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 30px;
   letter-spacing: 6px;
-  color: white;
 }
 
 .nav-right {
@@ -48,7 +60,6 @@ body {
   top: 18px;
   font-size: 28px;
   cursor: pointer;
-  z-index: 3000;
 }
 
 /* MENU */
@@ -80,7 +91,7 @@ body {
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('images/hero.jpg') center 20% / cover no-repeat;
+  background: url('images/hero.jpg') center 25% / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,25 +99,25 @@ body {
   position: relative;
 }
 
-/* LIGHTER OVERLAY */
+/* LIGHTER overlay */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), #000);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
 }
 
-/* FLASH */
+/* FLASH (visible now) */
 @keyframes flash {
-  0%, 95%, 100% { opacity: 0; }
-  96% { opacity: 0.2; }
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 0.4; }
 }
 
 .flash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255,200,150,0.2), transparent 70%);
-  animation: flash 6s infinite;
+  background: radial-gradient(circle, rgba(255,200,150,0.4), transparent 60%);
+  animation: flash 5s infinite;
 }
 
 .hero-content {
@@ -130,17 +141,16 @@ h2 {
   margin-top: 20px;
   padding: 12px 28px;
   border: 1px solid white;
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 /* SECTIONS */
 section {
-  min-height: 110vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 /* FADE */
@@ -155,38 +165,16 @@ section {
   transform: translateY(0);
 }
 
-/* CURSOR desktop only */
-@media (pointer: fine) {
-  .cursor {
-    width: 40px;
-    height: 40px;
-    border: 1px solid white;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 3000;
-  }
-
-  .cursor.dot {
-    width: 8px;
-    height: 8px;
-    background: white;
-    border: none;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-
 <!-- HEADER -->
-<div class="topbar">
+<div class="topbar" id="header">
+  <a href="#shop" class="nav-left">SHOP</a>
   <div class="nav-center">IGNACIO</div>
-  <div class="nav-right" onclick="toggleMenu()">☰</div>
+  <div class="nav-right" onclick="toggleMenu()" id="menuBtn">☰</div>
 </div>
 
 <!-- MENU -->
@@ -219,15 +207,34 @@ section {
   <h2 class="fade">The retreat from Kaunas</h2>
 </section>
 
-<section>
-  <h2 class="fade">Survival becomes the only objective</h2>
+<section id="shop">
+  <h2 class="fade">Volume I</h2>
 </section>
 
 <script>
 
-/* MENU FIX */
+/* HEADER SHOW ON SCROLL */
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("header");
+  if (window.scrollY > 100) {
+    header.classList.add("visible");
+  } else {
+    header.classList.remove("visible");
+  }
+});
+
+/* MENU toggle + X */
 function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
+  const menu = document.getElementById("menu");
+  const btn = document.getElementById("menuBtn");
+
+  menu.classList.toggle("active");
+
+  if (menu.classList.contains("active")) {
+    btn.innerHTML = "✕";
+  } else {
+    btn.innerHTML = "☰";
+  }
 }
 
 /* FADE */
@@ -242,36 +249,6 @@ const observer = new IntersectionObserver(entries => {
 });
 
 faders.forEach(el => observer.observe(el));
-
-/* CURSOR desktop only */
-if (window.matchMedia("(pointer: fine)").matches) {
-  const cursor = document.querySelector('.cursor');
-
-  let mouseX = 0, mouseY = 0;
-  let posX = 0, posY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function animate() {
-    posX += (mouseX - posX) * 0.1;
-    posY += (mouseY - posY) * 0.1;
-
-    cursor.style.left = posX + "px";
-    cursor.style.top = posY + "px";
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  document.querySelectorAll('a, .btn').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('dot'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('dot'));
-  });
-}
 
 </script>
 
