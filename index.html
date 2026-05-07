@@ -63,6 +63,15 @@ body {
   padding: 0 20px;
   z-index: 9999;
   box-sizing: border-box;
+}.topbar {
+  backdrop-filter: blur(0px);
+  background: rgba(0,0,0,0);
+  transition: 0.4s;
+}
+
+.topbar.active {
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.4);
 }
 
 .nav-left {
