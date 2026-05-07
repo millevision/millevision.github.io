@@ -11,10 +11,10 @@
 
 <style>
 
-/* RESET */
+/* BASE */
 body {
   margin: 0;
-  background: #0b0b0b;
+  background: #000;
   color: #eaeaea;
   font-family: Georgia, serif;
   overflow-x: hidden;
@@ -25,14 +25,14 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 70px;
+  height: 80px;
   z-index: 1000;
 }
 
 .nav-left {
   position: absolute;
   left: 20px;
-  top: 25px;
+  top: 28px;
   font-size: 14px;
   letter-spacing: 2px;
 }
@@ -40,18 +40,18 @@ body {
 .nav-center {
   position: absolute;
   left: 50%;
-  top: 20px;
+  top: 18px;
   transform: translateX(-50%);
   font-family: 'Cinzel', serif;
-  font-size: 22px;
-  letter-spacing: 4px;
+  font-size: 34px;
+  letter-spacing: 6px;
 }
 
 .nav-right {
   position: absolute;
   right: 20px;
   top: 20px;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
 }
 
@@ -70,7 +70,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.4s;
 }
 
 .menu.active {
@@ -100,27 +100,39 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0b0b0b);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), #000);
 }
 
-.hero div {
+.hero-content {
   position: relative;
   z-index: 2;
+  max-width: 700px;
 }
 
 h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(40px, 8vw, 70px);
+  font-size: clamp(42px, 8vw, 80px);
+  margin: 10px 0;
 }
 
 h2 {
   font-size: clamp(18px, 4vw, 26px);
-  max-width: 600px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 12px 28px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 2px;
 }
 
 /* SECTIONS */
 section {
-  min-height: 120vh;
+  min-height: 110vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,57 +151,25 @@ section {
   transform: translateY(0);
 }
 
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 10px 24px;
-  border: 1px solid white;
-  display: inline-block;
-}
+/* CURSOR (desktop only) */
+@media (pointer: fine) {
+  .cursor {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+  }
 
-/* SLIDER */
-.slider {
-  width: 100%;
-  overflow: hidden;
-}
-
-.slider-track {
-  display: flex;
-  animation: scroll 20s linear infinite;
-}
-
-.slide {
-  min-width: 300px;
-  margin: 0 20px;
-}
-
-.slide img {
-  width: 100%;
-}
-
-/* slider animation */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* CURSOR */
-.cursor {
-  width: 40px;
-  height: 40px;
-  border: 1px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 2000;
-}
-
-.cursor.dot {
-  width: 8px;
-  height: 8px;
-  background: white;
-  border: none;
+  .cursor.dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border: none;
+  }
 }
 
 </style>
@@ -201,8 +181,8 @@ section {
 
 <!-- NAV -->
 <div class="topbar">
-  <a href="#" class="nav-left">HOME</a>
-  <div class="nav-center">IGNACIO</div>
+  <a href="#" class="nav-left">SHOP</a>
+  <a href="#" class="nav-center">IGNACIO</a>
   <div class="nav-right" onclick="toggleMenu()">☰</div>
 </div>
 
@@ -216,33 +196,27 @@ section {
 
 <!-- HERO -->
 <div class="hero">
-  <div>
-    <h1>ADVENTURES</h1>
-    <h2>UPRISING & EXILE</h2>
-    <a href="#shop" class="btn">ENTER</a>
+  <div class="hero-content">
+    <h2>LEGITCOMICS PRESENTS</h2>
+    <h1>IGNACIO</h1>
+    <h2>WHERE HEROES BECOME LEGENDS</h2>
+
+    <a href="#shop" class="btn">SHOP</a>
+    <a href="#read" class="btn">READ</a>
   </div>
 </div>
 
 <!-- STORY -->
-<section><h2 class="fade">Lithuania, 1831</h2></section>
-<section><h2 class="fade">The retreat from Kaunas</h2></section>
-<section><h2 class="fade">Survival becomes the only objective</h2></section>
+<section id="read">
+  <h2 class="fade">Lithuania, 1831</h2>
+</section>
 
-<!-- HEROES -->
 <section>
-  <div>
-    <h2>Our Heroes</h2>
-    <div class="slider">
-      <div class="slider-track">
-        <div class="slide"><img src="images/hero1.jpg"></div>
-        <div class="slide"><img src="images/hero2.jpg"></div>
-        <div class="slide"><img src="images/hero3.jpg"></div>
-        <div class="slide"><img src="images/hero1.jpg"></div>
-        <div class="slide"><img src="images/hero2.jpg"></div>
-        <div class="slide"><img src="images/hero3.jpg"></div>
-      </div>
-    </div>
-  </div>
+  <h2 class="fade">The retreat from Kaunas</h2>
+</section>
+
+<section>
+  <h2 class="fade">Survival becomes the only objective</h2>
 </section>
 
 <!-- SHOP -->
@@ -276,34 +250,35 @@ const observer = new IntersectionObserver(entries => {
 
 faders.forEach(el => observer.observe(el));
 
-/* CURSOR FOLLOW */
-const cursor = document.querySelector('.cursor');
+/* CURSOR (desktop only) */
+if (window.matchMedia("(pointer: fine)").matches) {
+  const cursor = document.querySelector('.cursor');
 
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
 
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
 
-function animate() {
-  posX += (mouseX - posX) * 0.1;
-  posY += (mouseY - posY) * 0.1;
+  function animate() {
+    posX += (mouseX - posX) * 0.1;
+    posY += (mouseY - posY) * 0.1;
 
-  cursor.style.left = posX + "px";
-  cursor.style.top = posY + "px";
+    cursor.style.left = posX + "px";
+    cursor.style.top = posY + "px";
 
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  document.querySelectorAll('a, .btn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('dot'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('dot'));
+  });
 }
-
-animate();
-
-/* CURSOR HOVER */
-document.querySelectorAll('a, .btn').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('dot'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('dot'));
-});
 
 </script>
 
