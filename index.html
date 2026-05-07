@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ignacio Adventures</title>
 
-<link rel="icon" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
 <style>
-
 body {
   margin: 0;
   background: #000;
@@ -17,7 +15,12 @@ body {
   font-family: Georgia, serif;
 }
 
-/* HEADER hidden first */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* HEADER */
 .topbar {
   position: fixed;
   top: 0;
@@ -28,7 +31,6 @@ body {
   opacity: 0;
   transform: translateY(-20px);
   transition: 0.4s;
-  z-index: 2000;
 }
 
 .topbar.visible {
@@ -40,23 +42,22 @@ body {
   position: absolute;
   left: 20px;
   top: 24px;
-  font-size: 13px;
 }
 
 .nav-center {
   position: absolute;
   left: 50%;
-  top: 18px;
   transform: translateX(-50%);
+  top: 18px;
   font-family: 'Cinzel', serif;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .nav-right {
   position: absolute;
   right: 20px;
   top: 18px;
-  font-size: 28px;
+  font-size: 26px;
   cursor: pointer;
 }
 
@@ -80,52 +81,32 @@ body {
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('images/hero.jpg') center 25% / cover no-repeat;
+  background: url('images/hero.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
-}
-
-/* FLASH */
-@keyframes flash {
-  0%, 94%, 100% { opacity: 0; }
-  95% { opacity: 0.4; }
-}
-
-.flash {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,200,150,0.4), transparent 60%);
-  animation: flash 5s infinite;
 }
 
 .hero-content {
-  position: relative;
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fade 1.5s forwards;
 }
 
-h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 60px;
+@keyframes fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .btn {
-  margin-top: 20px;
-  padding: 10px 20px;
   border: 1px solid white;
+  padding: 10px 20px;
   display: inline-block;
-  color: white;
-  text-decoration: none;
+  margin-top: 20px;
 }
-
 </style>
 </head>
 
@@ -140,13 +121,14 @@ h1 {
 
 <!-- MENU -->
 <div class="menu" id="menu">
-  <a href="#">Home</a>
-  <a href="#read">Read</a>
+  <div>
+    <a href="#">Home</a>
+    <a href="#read">Read</a>
+  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="flash"></div>
   <div class="hero-content">
     <h1>IGNACIO</h1>
     <a href="#read" class="btn">READ</a>
@@ -155,19 +137,19 @@ h1 {
 
 <script>
 
-/* HEADER SHOW ON SCROLL */
+/* HEADER */
 window.addEventListener("scroll", () => {
-  const header = document.getElementById("header");
-  header.classList.toggle("visible", window.scrollY > 50);
+  document.getElementById("header")
+    .classList.toggle("visible", window.scrollY > 50);
 });
 
 /* MENU */
-const menuBtn = document.getElementById("menuBtn");
+const btn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
 
-menuBtn.onclick = () => {
+btn.onclick = () => {
   const open = menu.classList.toggle("active");
-  menuBtn.textContent = open ? "✕" : "☰";
+  btn.textContent = open ? "✕" : "☰";
 };
 
 </script>
